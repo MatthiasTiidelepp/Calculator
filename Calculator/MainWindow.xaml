@@ -1,0 +1,59 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d" FontSize="80" FontFamily="Century Gothic"
+        Title="MainWindow" Height="700" Width="500">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="Textbox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" TextAlignment="Right" />
+
+        <Button Click="Button_Click" x:Name="Button1" Grid.Column="0" Grid.Row="1" Content="1" />
+        <Button Click="Button_Click" x:Name="Button2" Grid.Column="1" Grid.Row="1" Content="2" />
+        <Button Click="Button_Click" x:Name="Button3" Grid.Column="2" Grid.Row="1" Content="3" />
+        <Button Click="ButtonOperator_Click" x:Name="ButtonDivide" Grid.Column="3" Grid.Row="1" Content="/" />
+
+        <Button Click="Button_Click" x:Name="Button4" Grid.Column="0" Grid.Row="2" Content="4" />
+        <Button Click="Button_Click" x:Name="Button5" Grid.Column="1" Grid.Row="2" Content="5" />
+        <Button Click="Button_Click" x:Name="Button6" Grid.Column="2" Grid.Row="2" Content="6" />
+        <Button Click="ButtonOperator_Click" x:Name="ButtonMultiply" Grid.Column="3" Grid.Row="2" Content="*" />
+
+        <Button Click="Button_Click" x:Name="Button7" Grid.Column="0" Grid.Row="3" Content="7" />
+        <Button Click="Button_Click" x:Name="Button8" Grid.Column="1" Grid.Row="3" Content="8" />
+        <Button Click="Button_Click" x:Name="Button9" Grid.Column="2" Grid.Row="3" Content="9" />
+        <Button Click="ButtonOperator_Click" x:Name="ButtonSubtract" Grid.Column="3" Grid.Row="3" Content="-" />
+
+        <Button Click="Button_Click" x:Name="Button0" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="0" />
+        <Button Click="Button_Click" x:Name="ButtonComma" Grid.Column="2" Grid.Row="4" Content="," />
+        <Button Click="ButtonOperator_Click" x:Name="ButtonAdd" Grid.Column="3" Grid.Row="4" Content="+" />
+
+        <Button Click="ButtonDelete_Click" x:Name="ButtonDelete" Grid.Column="4" Grid.Row="1" FontSize="70" Content="←" />
+        <Button Click="ButtonClear_Click" x:Name="ButtonClear" Grid.Column="4" Grid.Row="2" FontSize="60" Content="C" />
+        <Button Click="ButtonEnter_Click" x:Name="ButtonEnter" Grid.Column="4" Grid.Row="3" Grid.RowSpan="2" FontSize="30" FontWeight="SemiBold" Content="ENTER" />
+
+    </Grid>
+</Window>
