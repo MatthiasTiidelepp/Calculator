@@ -48,23 +48,42 @@ namespace Calculator
             // Cast the sender to a button
             var button = (Button)sender;
 
-            // If trying to add duplicate operator, keep displaying one. If the operator is different, change to that
-
-            // Add the clicked operator to textbox
-            Textbox.AppendText($" {button.Content.ToString()} ");
-        }
-
-        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
-        {
-            // Delete textbox content
+            // Get textbox content
             string text = Textbox.Text;
 
-            // If textbox content is longer than 0 and the second to last character is ' ', delete 2 last characters
-            // Else if textbox content is longer than 0, delete the last character
+            // If trying to add duplicate operator, keep displaying one. If the operator is different, change to that
+            // Else add clicked operator to textbox
+            if (text.Length >= 3)
+            {
+                if (text[text.Length - 2] == '/' || text[text.Length - 2] == '*' || text[text.Length - 2] == '-' || text[text.Length - 2] == '+')
+                {
+                    Textbox.Text = text.Substring(0, text.Length - 2) + button.Content.ToString() + " ";
+                } else
+                {
+                    Textbox.AppendText($" {button.Content.ToString()} ");
+                }
+            } else
+            {
+                Textbox.AppendText($" {button.Content.ToString()} ");
+            }
+        }
+
+        /// <summary>
+        /// Handles delete button click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            // Get textbox content
+            string text = Textbox.Text;
+
+            // If textbox content is longer than 1 and the last character is ' ', delete 3 last characters
+            // Else if textbox content is longer than 1, delete the last character
             // Else change textbox content to "0"
             if (text.Length > 1 && text[text.Length - 1] == ' ')
             {
-                text = text.Substring(0, text.Length - 2);
+                text = text.Substring(0, text.Length - 3);
             } else if (text.Length > 1)
             {
                 text = text.Substring(0, text.Length - 1);
@@ -76,12 +95,22 @@ namespace Calculator
             Textbox.Text = text;
         }
 
+        /// <summary>
+        /// Handles clear button click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
-            //Delete the last character
+            //Set textbox content to 0 (clear textbox)
             Textbox.Text = "0";
         }
 
+        /// <summary>
+        /// Handles enter button click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonEnter_Click(object sender, RoutedEventArgs e)
         {
             // Get text from textbox and split it into 3 parts
@@ -91,9 +120,11 @@ namespace Calculator
             double firstVal = 0;
             double secondVal = 0;
 
-            // If neither values haven't been entered, present an error ???
+            // If neither value hasn't been entered, present an error ???
 
-            // If no operator hasn't been entered, present an error ???
+            // If no operator has been entered, present an error ???
+
+            // If last character is ",", present an error ???
 
             // If either the first or second value hasn't been entered, set it to the other entered value
             // Else set variables to their corresponding values
@@ -105,6 +136,9 @@ namespace Calculator
             {
                 firstVal = double.Parse(parts[0]);
                 secondVal = double.Parse(parts[0]);
+            } else if (parts[0] == "" && parts[2] == "")
+            {
+                MessageBox.Show("Please enter a value");
             } else
             {
                 firstVal = double.Parse(parts[0]);
