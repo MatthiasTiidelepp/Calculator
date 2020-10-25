@@ -29,7 +29,7 @@ namespace Calculator
 
             // If textbox content is 0, replace the content with clicked number or ","
             // Else add clicked number or "," to textbox
-            if (Textbox.Text == "0")
+            if (Textbox.Text == "0" || Textbox.Text == "NaN" || Textbox.Text == "∞")
             {
                 Textbox.Text = button.Content.ToString();
             } else
@@ -113,60 +113,56 @@ namespace Calculator
         /// <param name="e"></param>
         private void ButtonEnter_Click(object sender, RoutedEventArgs e)
         {
-            // Get text from textbox and split it into 3 parts
+            // Get text from textbox and split it into array with 3 parts
             string[] parts = Textbox.GetLineText(0).Split(' ');
 
             // Initialize first and second values
             double firstVal = 0;
             double secondVal = 0;
 
-            // If neither value hasn't been entered, present an error ???
-
-            // If no operator has been entered, present an error ???
-
-            // If last character is ",", present an error ???
-
-            // If either the first or second value hasn't been entered, set it to the other entered value
-            // Else set variables to their corresponding values
-            if (parts[0] == "")
-            {
-                firstVal = double.Parse(parts[2]);
-                secondVal = double.Parse(parts[2]);
-            } else if (parts[2] == "")
-            {
-                firstVal = double.Parse(parts[0]);
-                secondVal = double.Parse(parts[0]);
-            } else if (parts[0] == "" && parts[2] == "")
-            {
-                MessageBox.Show("Please enter a value");
-            } else
-            {
-                firstVal = double.Parse(parts[0]);
-                secondVal = double.Parse(parts[2]);
-            }
-
             // Initialize the result variable
             double result = 0;
 
-            // Set result to the result of the calculation with the correct operator
-            switch (parts[1])
+            // Do nothing on clicking enter if only the first value has been entered, no operator has been entered, or only "," has been entered on either side of the calculation
+            if (parts.Length >= 3 && parts[2] != ",")
             {
-                case "/":
-                    result = firstVal / secondVal;
-                    break;
-                case "*":
-                    result = firstVal * secondVal;
-                    break;
-                case "-":
-                    result = firstVal - secondVal;
-                    break;
-                case "+":
-                    result = firstVal + secondVal;
-                    break;
+                // If either the first or second value hasn't been entered, set it to the other entered value
+                // Else set variables to their corresponding values
+                if (parts[0] == "")
+                {
+                    firstVal = double.Parse(parts[2]);
+                    secondVal = double.Parse(parts[2]);
+                } else if (parts[2] == "")
+                {
+                    firstVal = double.Parse(parts[0]);
+                    secondVal = double.Parse(parts[0]);
+                } else
+                {
+                    firstVal = double.Parse(parts[0]);
+                    secondVal = double.Parse(parts[2]);
+                }
+
+                // Set result to the result of the calculation with the correct operator
+                switch (parts[1])
+                {
+                    case "/":
+                        result = firstVal / secondVal;
+                        break;
+                    case "*":
+                        result = firstVal * secondVal;
+                        break;
+                    case "-":
+                        result = firstVal - secondVal;
+                        break;
+                    case "+":
+                        result = firstVal + secondVal;
+                        break;
+                }
+
+                // Set textbox to result
+                Textbox.Text = result.ToString();
             }
 
-            // Set textbox to result
-            Textbox.Text = result.ToString();
         }
     }
 }

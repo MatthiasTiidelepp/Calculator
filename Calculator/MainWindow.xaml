@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d" FontSize="80" FontFamily="Century Gothic"
-        Title="MainWindow" Height="700" Width="500">
+        Title="Calculator" Height="600" Width="400">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -53,7 +53,7 @@
 
         <Button Click="ButtonDelete_Click" x:Name="ButtonDelete" Grid.Column="4" Grid.Row="1" FontSize="70" Content="←" />
         <Button Click="ButtonClear_Click" x:Name="ButtonClear" Grid.Column="4" Grid.Row="2" FontSize="60" Content="C" />
-        <Button Click="ButtonEnter_Click" x:Name="ButtonEnter" Grid.Column="4" Grid.Row="3" Grid.RowSpan="2" FontSize="30" FontWeight="SemiBold" Content="ENTER" />
+        <Button Click="ButtonEnter_Click" x:Name="ButtonEnter" Grid.Column="4" Grid.Row="3" Grid.RowSpan="2" FontSize="25" FontWeight="SemiBold" Content="ENTER" />
 
     </Grid>
 </Window>
